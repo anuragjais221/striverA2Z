@@ -67,58 +67,23 @@ void print_1d_vector(vector<ll> v)
     }
     cout << endl;
 }
-
-int minJumps(vector<int>arr,int n){
-
-    // O(n*n) approach
-
-    // if(arr[0] == 0) return -1;
-    // if( n==1 ) return 0;
-    // int l = 0;
-    // int r = 0;
-    // int jumps=0;
-    // int len = arr.size();
-    
-    // while(r < len-1){
-    //     int maxi=0;
-    //     for(int i = l;i<r+1;i++){
-    //         maxi = max(maxi,i+arr[i]);
+ll sumOfSeries(ll N)
+{
+    // optimized O(1)
+    //     if(N&1){
+    //         return ((N+1)/2 * N)*((N+1)/2 * N);
     //     }
-    //     l=r+1;
-    //     r=maxi;
-    //     jumps++;
+    //     return (N/2*(N+1))*(N/2*(N+1));
     // }
-    // return jumps;
-
-    // O(n) approach
-
-    if(arr[0] == 0) return -1;
-    if(n==1) return 0;
-    int max_reachable=0;
-    int jumps=1;
-    int step=arr[0];
-    for(int i=1;i<n;i++){
-        if(i == n-1) return jumps;
-        // if(reachable < i) return -1;
-        max_reachable = max(max_reachable,i+arr[i]);
-        step--;
-        if(step==0){
-            jumps++;
-            if(i>=max_reachable) return -1;
-            step = max_reachable-i;
-        }
-    }
-    return jumps;
-
-
+    if (N == 0)
+        return 0;
+    return N * N * N + sumOfSeries(N - 1);
 }
 void answer()
 {
-    int n;
+    ll n;
     cin >> n;
-    vector<int>v(n,0);
-    for(int i=0;i<n;i++) cin >> v[i];
-    cout << minJumps(v,n) << endl;
+    cout << sumOfSeries(n) << endl;
 }
 int main()
 {

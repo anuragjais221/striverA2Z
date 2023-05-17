@@ -68,57 +68,30 @@ void print_1d_vector(vector<ll> v)
     cout << endl;
 }
 
-int minJumps(vector<int>arr,int n){
+ll factorial(ll n){
+    if(n==1) return 1;
+    return n*factorial(n-1);
+}
 
-    // O(n*n) approach
-
-    // if(arr[0] == 0) return -1;
-    // if( n==1 ) return 0;
-    // int l = 0;
-    // int r = 0;
-    // int jumps=0;
-    // int len = arr.size();
-    
-    // while(r < len-1){
-    //     int maxi=0;
-    //     for(int i = l;i<r+1;i++){
-    //         maxi = max(maxi,i+arr[i]);
-    //     }
-    //     l=r+1;
-    //     r=maxi;
-    //     jumps++;
-    // }
-    // return jumps;
-
-    // O(n) approach
-
-    if(arr[0] == 0) return -1;
-    if(n==1) return 0;
-    int max_reachable=0;
-    int jumps=1;
-    int step=arr[0];
-    for(int i=1;i<n;i++){
-        if(i == n-1) return jumps;
-        // if(reachable < i) return -1;
-        max_reachable = max(max_reachable,i+arr[i]);
-        step--;
-        if(step==0){
-            jumps++;
-            if(i>=max_reachable) return -1;
-            step = max_reachable-i;
-        }
+vector<ll> factorialNumbers(ll N)
+{
+    // Write Your Code here
+    //vector<ll> ans;
+    // for (ll i =1;i<N+1;i++) ans.push_back(factorial(i));
+    vector<ll>ans;
+    ans.push_back(1);
+    if(N==1 || N==2) return ans;
+    for(int i = 2;i<N;i++){
+        ll l = ans.size();
+        ans.push_back(ans[l-1]);
     }
-    return jumps;
-
-
+    return ans;
 }
 void answer()
 {
-    int n;
+    ll n;
     cin >> n;
-    vector<int>v(n,0);
-    for(int i=0;i<n;i++) cin >> v[i];
-    cout << minJumps(v,n) << endl;
+    print_1d_vector(factorialNumbers(n));
 }
 int main()
 {
