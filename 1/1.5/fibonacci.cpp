@@ -67,28 +67,20 @@ void print_1d_vector(vector<ll> v)
     }
     cout << endl;
 }
-
-vector<ll> factorialNumbers(ll N)
+vector<long long> printFibb(int n) 
 {
-    // Write Your Code here
-    vector<ll>ans;
-    ans.push_back(1L);
-    if(N==1) {
-        return ans;
-    }
-    for(ll i = 2;i<N+1;i++){
-        // cout << "val = " << ans[i-2]*i << endl;
-        if(ans[i-2]*i > N ) break;
-        ans.push_back(ans[i-2]*i);
-    }
-    
+    //code here
+    vector<long long> ans(n,0);
+    ans[0] = 0;
+    ans[1] = 1;
+    for(int i=2;i<n;i++) ans[i] = ans[i-1]+ans[i-2];
     return ans;
 }
 void answer()
 {
-    ll n;
+    int n;
     cin >> n;
-    print_1d_vector(factorialNumbers(n));
+    print_1d_vector(printFibb(n));
 }
 int main()
 {

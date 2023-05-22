@@ -67,28 +67,41 @@ void print_1d_vector(vector<ll> v)
     }
     cout << endl;
 }
-
-vector<ll> factorialNumbers(ll N)
+// void removeSpaces(string &str,int n)
+// {   
+//     int count =0;
+//     for(int i=0;i<n;i++)
+//         if(str[i] != ' ')
+//             str[count++] = str[i];
+//     str[count]='\0';
+// }
+ 
+bool isPalindrome(string s)
 {
-    // Write Your Code here
-    vector<ll>ans;
-    ans.push_back(1L);
-    if(N==1) {
-        return ans;
-    }
-    for(ll i = 2;i<N+1;i++){
-        // cout << "val = " << ans[i-2]*i << endl;
-        if(ans[i-2]*i > N ) break;
-        ans.push_back(ans[i-2]*i);
-    }
+    // Your code goes here
+    // int n = s.length();
     
-    return ans;
+    // for(int i=0;i<n/2;i++){
+    //     if(s[i] != s[n-i-1]) return false;
+    // }
+    // return true;
+
+    int i=0;
+    int j=s.length()-1;
+
+    while(i<j){
+        if(!isalnum(s[i])) i++;
+        else if(!isalnum(s[j])) j--;
+        else if(tolower(s[i]) != tolower(s[j])) return false;
+        else { i++; j--;}
+    }
+    return true;
 }
 void answer()
 {
-    ll n;
-    cin >> n;
-    print_1d_vector(factorialNumbers(n));
+    string s;
+    cin >> s;
+
 }
 int main()
 {

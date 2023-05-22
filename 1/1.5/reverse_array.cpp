@@ -68,27 +68,23 @@ void print_1d_vector(vector<ll> v)
     cout << endl;
 }
 
-vector<ll> factorialNumbers(ll N)
-{
-    // Write Your Code here
-    vector<ll>ans;
-    ans.push_back(1L);
-    if(N==1) {
-        return ans;
-    }
-    for(ll i = 2;i<N+1;i++){
-        // cout << "val = " << ans[i-2]*i << endl;
-        if(ans[i-2]*i > N ) break;
-        ans.push_back(ans[i-2]*i);
-    }
-    
-    return ans;
+void reverseArray(vector<int> &v,int i,int j){
+    if(i>=j) return;
+    swap(v[i],v[j]);
+    reverseArray(v,i+1,j-1);
 }
 void answer()
 {
-    ll n;
+    int n;
     cin >> n;
-    print_1d_vector(factorialNumbers(n));
+    vector<int>v(n,0);
+    for(int i=0;i<n;i++) cin >> v[i];
+    // for(auto x : v) cout << x << " ";
+    // cout << endl;
+    reverseArray(v,0,n-1);
+
+    for(auto x : v) cout << x << " ";
+    cout << endl;
 }
 int main()
 {
