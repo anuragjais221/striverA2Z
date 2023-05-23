@@ -1,0 +1,2 @@
+hashing inside main array upto 10^6
+hashing outside main array upto 10^7
